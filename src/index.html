@@ -2,17 +2,73 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Document</title>
+		<title>Dashboard</title>
 		<!-- bower:css -->
 		<!-- endbower -->
 		<!-- inject:cssVendors -->
 		<!-- endinject -->
 		<!-- inject:css -->
 		<!-- endinject -->
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 	</head>
 	<body ng-app="myApp" ng-controller='mainCtrl'>
-		
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="container-fluid">
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </button>
+		  <a class="navbar-brand" href="#">Dashboard</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav navbar-right">
+			<li><a href="#">Dashboard</a></li>
+			<li><a href="#">Settings</a></li>
+			<li><a href="#">Help</a></li>
+		  </ul>
+		</div>
+	  </div>
+	</nav>
+	<div class="container-fluid">
+	  <div class="row">
+		<div class="col-sm-3 col-md-2 sidebar">
+			<h4>Overall</h4>
+			<ul class="nav nav-sidebar">
+				<li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+				<li><a href="#">Nr. of Employees</a></li>
+				<li><a href="#">KPIs</a></li>
+			</ul>
+			<h4>Issues</h4>
+			<ul class="nav nav-sidebar">
+				<li><a href="">Reported Issues</a></li>
+			</ul> 
+			<h4>Data</h4>
+			<ul class="nav nav-sidebar">
+				<li><a href="">Issues</a></li>
+		  	</ul>
+		</div>
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<h1 class="page-header">Overview</h1>
+			<h2 class="page-header">Employees by Region</h2>
+			<section>
+				<div class="row">
+					<div class="col-md-6">
+						<p ng-click='employee.chartType = "Table"'>Show Data</p>
+						<gchart data='employee.data' chart="{{employee.chartType}}" width="{{employee.width}}" height="{{employee.height}}" title="{{employee.title}}"></gchart>
+					</div>
+					<div class="col-md-6">
 
+					</div>
+				</div>
+
+			</section>
+			
+			
 		<!-- bower:js 
 		<script src="../bower_components/jquery/dist/jquery.js"></script>
 		<script src="../bower_components/angular/angular.js"></script> -->
