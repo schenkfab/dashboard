@@ -54,19 +54,38 @@
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<h1 class="page-header">Overview</h1>
-			<h2 class="page-header">Employees by Region</h2>
-			<section>
+			<section ng-controller='employeeCtrl' ng-show='false'>
+				<h2 class="page-header">Employees by Region</h2>
 				<div class="row">
-					<div class="col-md-6">
-						<p ng-click='employee.chartType = "Table"'>Show Data</p>
-						<gchart data='employee.data' chart="{{employee.chartType}}" width="{{employee.width}}" height="{{employee.height}}" title="{{employee.title}}"></gchart>
-					</div>
-					<div class="col-md-6">
-
+					<div class="col-md-12">
+						<div class="row">
+							<div class="col-md-4">
+								<p ng-click='employee.chartType = "Table"'>Show Data</p>
+							</div>
+							<div class="col-md-4">
+								<p ng-click='employee.chartType = "GeoMap"'>Show Map</p>
+							</div>
+							<div class="col-md-4">
+								<p ng-click='employee.chartType = "PieChart"'>Show Pie</p>
+							</div>
+						</div>
+						<gchart data='employee.data' chart="{{employee.chartType}}" width="{{employee.width}}" height="{{employee.height}}"></gchart>
 					</div>
 				</div>
+			</section>
+			<section ng-controller='issueCtrl'>
+				<h2 class="page-header">Open Issues</h2>
+				<h3 class="page-header">Detail Data</h3>
+				<gchart data='issue.data' chart="{{issue.chartType}}" width="{{issue.width}}" height="{{issue.height}}"></gchart><br><br><br>
+				<h3 class="page-header">Chart per Month</h3>
+				<gchart data='issueLine.data' chart="{{issueLine.chartType}}" width="{{issueLine.width}}" height="{{issueLine.height}}"></gchart>
+			</section>
+			<section ng-controller='customerCtrl'>
+				<h2 class="page-header">Paying Customer</h2>
+				<gchart data='issue.data' chart="{{issue.chartType}}" width="{{issue.width}}" height="{{issue.height}}"></gchart>
 
 			</section>
+			
 			
 			
 		<!-- bower:js 

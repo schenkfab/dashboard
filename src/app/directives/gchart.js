@@ -2,14 +2,12 @@ angular.module('myApp').directive('gchart', function() {
 	return {
 		restrict: 'EA',
 		scope: {
-			title: '@title',
 			width: '@width',
 			height: '@height',
 			data: '=data',
-			chart: '@chart',
-			selectFn: '&select'
+			chart: '@chart'
 		},
-		link: function ($scope, $elm, $attr) {
+		link: function ($scope, $elm) {
 			
 			var data = new google.visualization.DataTable();
 			data.addColumn('string', 'Label');
@@ -21,22 +19,40 @@ angular.module('myApp').directive('gchart', function() {
 			function draw() {
 				var data = google.visualization.arrayToDataTable($scope.data);
 
-				var options = {
-					'title': $scope.title,
-					'width': $scope.width,
-					'height': $scope.height,
-					'dataMode': 'regions'
-				};
-
-				options['dataMode'] = 'regions';
+				var options = {};
 
 				var geomap = undefined;
 
 				if($scope.chart == 'GeoMap') {
+					options = {
+						'width': $scope.width,
+						'height': $scope.height,
+						'dataMode': 'regions'
+					};
 					geomap = new google.visualization.GeoMap($elm[0]);
 				} else if($scope.chart == 'Table') {
+					options = {
+						'width': $scope.width,
+						'height': $scope.height
+					};
 					geomap = new google.visualization.Table($elm[0]);
+				} else if($scope.chart == 'BarChart') {
+					options = {
+						'width': $scope.width,
+						'height': $scope.height
+					};
+					geomap = new google.visualization.BarChart($elm[0]);
+				} else if($scope.chart == 'LineChart') {
+					options = {
+						'width': $scope.width,
+						'curveType': 'function',
+						'height': $scope.height
+					};
+					geomap = new google.visualization.LineChart($elm[0]);
 				} else {
+					options = {
+						'width': $scope.width
+					};
 					geomap = new google.visualization.PieChart($elm[0]);
 				}
 				geomap.draw(data, options);		
