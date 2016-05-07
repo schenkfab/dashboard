@@ -1,5 +1,5 @@
-# Project Name
-Subtitle
+# Corporate Dashboard
+Udacity Project 4: Corporate Dashboard
 
 ## Installation
 Run both 
