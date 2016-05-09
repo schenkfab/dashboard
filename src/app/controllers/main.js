@@ -1,4 +1,4 @@
-angular.module('myApp').controller('mainCtrl', function($scope) {
+angular.module('myApp').controller('mainCtrl', function() {
 
 });
 
@@ -11,7 +11,7 @@ angular.module('myApp').controller('employeeCtrl', function($scope) {
 					['Canada', 124],
 					['France', 15]];
 
-	$scope.employee.width = "800";
+	$scope.employee.width = 800;
 	$scope.employee.height = 500;
 	$scope.employee.chartType = 'GeoMap';
 });
@@ -21,7 +21,7 @@ angular.module('myApp').controller('issueCtrl', function($scope, $http) {
 	$scope.issue = {};
 	$scope.issue.data = [];
 	
-	$scope.issue.width = "100%";
+	$scope.issue.width = '100%';
 	$scope.issue.height = 300;
 	$scope.issue.chartType = 'Table';
 
