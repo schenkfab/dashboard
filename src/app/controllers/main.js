@@ -67,6 +67,7 @@ angular.module('myApp').controller('issueCtrl', function($scope, $http) {
 				}
 			}
 		});
+		$scope.issue.header = lines[0];
 		$scope.issue.data = lines;
 	});
 });

@@ -76,6 +76,12 @@
 			<section ng-controller='issueCtrl'>
 				<h2 class="page-header">Open Issues</h2>
 				<h3 class="page-header">Detail Data</h3>
+				<h4 class="page-header">Filters</h4>
+				<div ng-repeat='head in issue.header' class="form-group">
+					
+				<label>{{head}}</label>
+				<input class="form-control">
+				</div>
 				<gchart data='issue.data' chart="{{issue.chartType}}" width="{{issue.width}}" height="{{issue.height}}"></gchart><br><br><br>
 				<h3 class="page-header">Chart per Month</h3>
 				<gchart data='issueLine.data' chart="{{issueLine.chartType}}" width="{{issueLine.width}}" height="{{issueLine.height}}"></gchart>
@@ -83,7 +89,6 @@
 			<section ng-controller='customerCtrl'>
 				<h2 class="page-header">Paying Customer</h2>
 				<gchart data='issue.data' chart="{{issue.chartType}}" width="{{issue.width}}" height="{{issue.height}}"></gchart>
-
 			</section>
 			
 			
