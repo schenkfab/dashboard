@@ -77,15 +77,23 @@
 				<h2 class="page-header">Open Issues</h2>
 				<h3 class="page-header">Detail Data</h3>
 				<span class="btn btn-success" ng-click="showFilters = !showFilters;">Toggle Filters</span>
-				<div id="filters" ng-show='showFilters'>	
-				<br><br>
+				<div id="filters" class="form-horizontal" ng-show='showFilters'>	
+					<br><br>
 					<h4 class="page-header">Filters</h4>
 					<div ng-repeat='head in issue.header' class="form-group">
-						<label>{{head}}</label>
-						<input class='form-control' type="text" ng-model='filters[head]' uib-typeahead='value for value in issue.values[head] | filter:$viewValue'>
+						<label class="col-sm-2 control-label" for='{{head}}'>{{head}}</label>
+						<div class="col-sm-10">
+							<input id='{{head}}' class='form-control' type="text" ng-model='filters[head]' uib-typeahead='value for value in issue.values[head] | filter:$viewValue'>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<button class="btn btn-default pull-right" ng-click='applyFilter()'>Apply</button>
+					</div>
+					<div class="col-sm-2">
+						<button class="btn btn-default pull-left" ng-click='reloadData()'>Reset</button>
 					</div>
 				</div>
-				<br><br>
+				<br><br><br><br>
 				<gchart data='issue.data' chart="{{issue.chartType}}" width="{{issue.width}}" height="{{issue.height}}"></gchart><br><br><br>
 				<h3 class="page-header">Chart per Month</h3>
 				<gchart data='issueLine.data' chart="{{issueLine.chartType}}" width="{{issueLine.width}}" height="{{issueLine.height}}"></gchart>
