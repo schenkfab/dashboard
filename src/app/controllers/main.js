@@ -75,11 +75,18 @@ angular.module('myApp').controller('issueCtrl', function($scope, $http) {
 			$scope.issue.values[value] = [];
 			lines.forEach(function(l) {
 				if (l[0] != 'id') {
-					if ($scope.issue.values[value].indexOf(l[index]) == -1) {
-						$scope.issue.values[value].push(l[index]);
-					} 
+					if(value == 'created' || value == 'closed') {
+						if ($scope.issue.values[value].map(Number).indexOf(+l[index]) == -1) {
+							$scope.issue.values[value].push(l[index]);
+						} 
+					} else {
+						if ($scope.issue.values[value].indexOf(l[index]) == -1) {
+							$scope.issue.values[value].push(l[index]);
+						} 
+					}
 				}
 			});
+			console.log($scope.issue.values);
 		});
 		$scope.issue.data = lines;
 	});
