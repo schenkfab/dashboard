@@ -78,9 +78,11 @@
 				<h3 class="page-header">Detail Data</h3>
 				<h4 class="page-header">Filters</h4>
 				<div ng-repeat='head in issue.header' class="form-group">
-					
-				<label>{{head}}</label>
-				<input class="form-control">
+					<label>{{head}}</label>
+					<input type="text" list="{{head}}">
+					<datalist id={{head}}>
+						<option ng-repeat='value in issue.values[head]' value='{{value}}'>{{value}}</option>
+					</datalist>
 				</div>
 				<gchart data='issue.data' chart="{{issue.chartType}}" width="{{issue.width}}" height="{{issue.height}}"></gchart><br><br><br>
 				<h3 class="page-header">Chart per Month</h3>
