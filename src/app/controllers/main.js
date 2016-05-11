@@ -1,8 +1,23 @@
-angular.module('myApp').controller('mainCtrl', function() {
+angular.module('myApp').controller('mainCtrl', function(pageService, $scope) {
+	pageService.setCurrentPage('employee');
 
+	$scope.setPage = function(page) {
+		pageService.setCurrentPage(page);
+	};
 });
 
-angular.module('myApp').controller('employeeCtrl', function($scope) {
+angular.module('myApp').controller('customerCtrl', function(pageService, $scope) {
+	$scope.visible = function() {
+		return pageService.getCurrentPage() == 'customer';
+	};
+});
+
+angular.module('myApp').controller('employeeCtrl', function($scope, pageService) {
+
+	$scope.visible = function() {
+		return pageService.getCurrentPage() == 'employee';
+	};
+
 	$scope.employee = {};
 	$scope.employee.data = [['Country', 'Nr. of empoyees'],
 					['Germany', 486],
@@ -10,13 +25,16 @@ angular.module('myApp').controller('employeeCtrl', function($scope) {
 					['Brazil', 84],
 					['Canada', 124],
 					['France', 15]];
-
 	$scope.employee.width = 800;
 	$scope.employee.height = 500;
 	$scope.employee.chartType = 'GeoMap';
 });
 
-angular.module('myApp').controller('issueCtrl', function($scope, $http) {
+angular.module('myApp').controller('issueCtrl', function($scope, $http, pageService) {
+
+	$scope.visible = function() {
+		return pageService.getCurrentPage() == 'issue';
+	};
 
 	$scope.issue = {};
 	$scope.issue.data = [];
@@ -40,7 +58,7 @@ angular.module('myApp').controller('issueCtrl', function($scope, $http) {
 					['2016/05', 150, 50, 3]];
 
 	function getData(cb) {
-		$http.get('http://localhost:3000/assets/mock/issues.csv').success(function(allText) {
+		$http.get('/assets/mock/issues.csv').success(function(allText) {
 			// split content based on new line
 			var allTextLines = allText.split(/\r\n|\n/);
 			var headers = allTextLines[0].split(',');

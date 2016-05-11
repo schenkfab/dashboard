@@ -37,11 +37,11 @@
 	<div class="container-fluid">
 	  <div class="row">
 		<div class="col-sm-3 col-md-2 sidebar">
-			<h4>Overall</h4>
+			<h4>Reports</h4>
 			<ul class="nav nav-sidebar">
-				<li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-				<li><a href="#">Nr. of Employees</a></li>
-				<li><a href="#">KPIs</a></li>
+				<li ng-click='setPage("employee")' class="active"><a href="#">Employees</a></li>
+				<li ng-click='setPage("issue")'><a href="#">Issues</a></li>
+				<li ng-click='setPage("customer")'><a href="#">Customers</a></li>
 			</ul>
 			<h4>Issues</h4>
 			<ul class="nav nav-sidebar">
@@ -53,8 +53,7 @@
 		  	</ul>
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<h1 class="page-header">Overview</h1>
-			<section ng-controller='employeeCtrl' ng-show='false'>
+			<section ng-controller='employeeCtrl' ng-show='visible()'>
 				<h2 class="page-header">Employees by Region</h2>
 				<div class="row">
 					<div class="col-md-12">
@@ -73,7 +72,7 @@
 					</div>
 				</div>
 			</section>
-			<section ng-controller='issueCtrl'>
+			<section ng-controller='issueCtrl' ng-show='visible()'>
 				<h2 class="page-header">Open Issues</h2>
 				<h3 class="page-header">Detail Data</h3>
 				<span class="btn btn-success" ng-click="showFilters = !showFilters;">Toggle Filters</span>
@@ -98,11 +97,10 @@
 				<h3 class="page-header">Chart per Month</h3>
 				<gchart data='issueLine.data' chart="{{issueLine.chartType}}" width="{{issueLine.width}}" height="{{issueLine.height}}"></gchart>
 			</section>
-			<section ng-controller='customerCtrl'>
+			<section ng-controller='customerCtrl' ng-show='visible()'>
 				<h2 class="page-header">Paying Customer</h2>
-				<gchart data='issue.data' chart="{{issue.chartType}}" width="{{issue.width}}" height="{{issue.height}}"></gchart>
 			</section>
-			
+		</div>
 			
 			
 		<!-- bower:js 
