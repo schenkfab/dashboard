@@ -98,7 +98,6 @@ angular.module('myApp').controller('issueCtrl', function($scope, $http) {
 		$scope.filteredData = [];
 		var i = originalData.length;
 		while (i--) {
-			console.log(i);
 			if (originalData[i][0] != 'id') {
 				$scope.issue.header.forEach(function(head, index) {
 					if ($scope.filters[head]) {
