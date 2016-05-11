@@ -67,6 +67,7 @@ angular.module('myApp').controller('issueCtrl', function($scope, $http) {
 				}
 			}
 		});
+		$scope.filters = {};
 		$scope.issue.header = lines[0];
 		$scope.issue.values = {};
 		// get values for all headers:

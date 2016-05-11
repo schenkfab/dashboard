@@ -76,14 +76,16 @@
 			<section ng-controller='issueCtrl'>
 				<h2 class="page-header">Open Issues</h2>
 				<h3 class="page-header">Detail Data</h3>
-				<h4 class="page-header">Filters</h4>
-				<div ng-repeat='head in issue.header' class="form-group">
-					<label>{{head}}</label>
-					<input type="text" list="{{head}}">
-					<datalist id={{head}}>
-						<option ng-repeat='value in issue.values[head]' value='{{value}}'>{{value}}</option>
-					</datalist>
+				<span class="btn btn-success" ng-click="showFilters = !showFilters;">Toggle Filters</span>
+				<div id="filters" ng-show='showFilters'>	
+				<br><br>
+					<h4 class="page-header">Filters</h4>
+					<div ng-repeat='head in issue.header' class="form-group">
+						<label>{{head}}</label>
+						<input class='form-control' type="text" ng-model='filters[head]' uib-typeahead='value for value in issue.values[head] | filter:$viewValue'>
+					</div>
 				</div>
+				<br><br>
 				<gchart data='issue.data' chart="{{issue.chartType}}" width="{{issue.width}}" height="{{issue.height}}"></gchart><br><br><br>
 				<h3 class="page-header">Chart per Month</h3>
 				<gchart data='issueLine.data' chart="{{issueLine.chartType}}" width="{{issueLine.width}}" height="{{issueLine.height}}"></gchart>
