@@ -68,6 +68,16 @@ angular.module('myApp').controller('issueCtrl', function($scope, $http) {
 			}
 		});
 		$scope.issue.header = lines[0];
+		$scope.issue.values = {};
+		// get values for all headers:
+		$scope.issue.header.forEach(function(value, index) {
+			$scope.issue.values[value] = [];
+			lines.forEach(function(l) {
+				if ($scope.issue.values[value].indexOf(l[index]) == -1) {
+					$scope.issue.values[value].push(l[index]);
+				} 
+			});
+		});
 		$scope.issue.data = lines;
 	});
 });
