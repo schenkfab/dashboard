@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=2">
 		<title>Dashboard</title>
 		<!-- bower:css -->
 		<!-- endbower -->
@@ -14,24 +14,6 @@
 
 	</head>
 	<body ng-app="myApp" ng-controller='mainCtrl'>
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-	  <div class="container-fluid">
-		<div class="navbar-header">
-		  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		  </button>
-		  <a class="navbar-brand" href="#">Dashboard</a>
-		</div>
-		<div id="navbar" class="navbar-collapse collapse">
-		  <ul class="nav navbar-nav navbar-right">
-			<li><a href="#">Dashboard</a></li>
-		  </ul>
-		</div>
-	  </div>
-	</nav>
 	<div class="container-fluid">
 	  <div class="row">
 		<div class="col-sm-3 col-md-2 sidebar">
@@ -89,7 +71,7 @@
 			</section>
 			<section ng-controller='customerCtrl' ng-show='visible()'>
 				<h2 class="page-header">Paying Customer</h2>
-				<gchart data='customers.data' json="true" chart="{{customers.chartType}}" width="{{customers.width}}" height="{{customers.height}}"></gchart>
+				<gchart data='customers.data' json="true" width="800" chart="{{customers.chartType}}"></gchart>
 			</section>
 		</div>
 			

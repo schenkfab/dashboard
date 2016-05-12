@@ -20,8 +20,6 @@ angular.module('myApp').controller('customerCtrl', function(pageService, $scope,
 	$http.get('/assets/mock/customers.json').success(function(json) {
 		$scope.customers.data = json;
 		$scope.customers.chartType = 'LineChart';
-		$scope.customers.width = 800;
-		$scope.customers.height = 500;
 	});
 
 	$interval(function(){
@@ -47,8 +45,6 @@ angular.module('myApp').controller('employeeCtrl', function($scope, pageService)
 					['Brazil', 84],
 					['Canada', 124],
 					['France', 15]];
-	$scope.employee.width = 800;
-	$scope.employee.height = 500;
 	$scope.employee.chartType = 'GeoMap';
 });
 
@@ -61,15 +57,11 @@ angular.module('myApp').controller('issueCtrl', function($scope, $http, pageServ
 	$scope.issue = {};
 	$scope.issue.data = [];
 	
-	$scope.issue.width = '100%';
-	$scope.issue.height = 300;
 	$scope.issue.chartType = 'Table';
 
 	$scope.issueLine = {};
 	$scope.issueLine.data = [];
 	
-	$scope.issueLine.width = 1200;
-	$scope.issueLine.height = 500;
 	$scope.issueLine.chartType = 'BarChart';
 
 	$scope.issueLine.data = [['Month', 'Open Issues', 'Closed Issues', 'Rejected Issues'],
