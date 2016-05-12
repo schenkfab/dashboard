@@ -1,15 +1,37 @@
 angular.module('myApp').controller('mainCtrl', function(pageService, $scope) {
 	pageService.setCurrentPage('employee');
 
+	$scope.getPage = function() {
+		return pageService.getCurrentPage();
+	};
+
 	$scope.setPage = function(page) {
 		pageService.setCurrentPage(page);
 	};
 });
 
-angular.module('myApp').controller('customerCtrl', function(pageService, $scope) {
+angular.module('myApp').controller('customerCtrl', function(pageService, $scope, $http, $interval) {
 	$scope.visible = function() {
 		return pageService.getCurrentPage() == 'customer';
 	};
+
+	// a line chart reflecting number of paying customers over a period of time
+	$scope.customers = {};
+	$http.get('/assets/mock/customers.json').success(function(json) {
+		$scope.customers.data = json;
+		$scope.customers.chartType = 'LineChart';
+		$scope.customers.width = 800;
+		$scope.customers.height = 500;
+	});
+
+	$interval(function(){
+		$http.get('/assets/mock/customers.json').success(function(json) {
+			$scope.customers.data = json;
+			console.log('data refreshed');
+		});
+	}.bind(this), 10000); 
+
+
 });
 
 angular.module('myApp').controller('employeeCtrl', function($scope, pageService) {
@@ -112,14 +134,13 @@ angular.module('myApp').controller('issueCtrl', function($scope, $http, pageServ
 
 
 	$scope.applyFilter = function() {
-		var originalData = $scope.issue.data;
 		$scope.filteredData = [];
-		var i = originalData.length;
+		var i = $scope.issue.data.length;
 		while (i--) {
-			if (originalData[i][0] != 'id') {
+			if ($scope.issue.data[i][0] != 'id') {
 				$scope.issue.header.forEach(function(head, index) {
 					if ($scope.filters[head]) {
-						if (originalData[i][index] != $scope.filters[head]) {
+						if ($scope.issue.data[i][index] != $scope.filters[head]) {
 							$scope.issue.data.splice(i, 1);
 						}
 					}

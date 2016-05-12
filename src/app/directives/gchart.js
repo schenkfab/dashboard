@@ -5,7 +5,8 @@ angular.module('myApp').directive('gchart', function() {
 			width: '@width',
 			height: '@height',
 			data: '=data',
-			chart: '@chart'
+			chart: '@chart',
+			json: '@json'
 		},
 		link: function ($scope, $elm) {
 			
@@ -17,7 +18,12 @@ angular.module('myApp').directive('gchart', function() {
 			google.charts.setOnLoadCallback(draw);
 			
 			function draw() {
-				var data = google.visualization.arrayToDataTable($scope.data);
+				if($scope.json) {
+					var data = new google.visualization.DataTable($scope.data);
+				} else {
+					var data = google.visualization.arrayToDataTable($scope.data);
+				}
+				
 
 				var options = {};
 

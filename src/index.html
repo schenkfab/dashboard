@@ -28,8 +28,6 @@
 		<div id="navbar" class="navbar-collapse collapse">
 		  <ul class="nav navbar-nav navbar-right">
 			<li><a href="#">Dashboard</a></li>
-			<li><a href="#">Settings</a></li>
-			<li><a href="#">Help</a></li>
 		  </ul>
 		</div>
 	  </div>
@@ -39,18 +37,10 @@
 		<div class="col-sm-3 col-md-2 sidebar">
 			<h4>Reports</h4>
 			<ul class="nav nav-sidebar">
-				<li ng-click='setPage("employee")' class="active"><a href="#">Employees</a></li>
-				<li ng-click='setPage("issue")'><a href="#">Issues</a></li>
-				<li ng-click='setPage("customer")'><a href="#">Customers</a></li>
+				<li ng-click='setPage("employee")' ng-class="{active: getPage() == 'employee'}"><a href="#">Employees</a></li>
+				<li ng-click='setPage("issue")' ng-class="{active: getPage() == 'issue'}"><a href="#">Issues</a></li>
+				<li ng-click='setPage("customer")' ng-class="{active: getPage() == 'customer'}"><a href="#">Customers</a></li>
 			</ul>
-			<h4>Issues</h4>
-			<ul class="nav nav-sidebar">
-				<li><a href="">Reported Issues</a></li>
-			</ul> 
-			<h4>Data</h4>
-			<ul class="nav nav-sidebar">
-				<li><a href="">Issues</a></li>
-		  	</ul>
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<section ng-controller='employeeCtrl' ng-show='visible()'>
@@ -99,6 +89,7 @@
 			</section>
 			<section ng-controller='customerCtrl' ng-show='visible()'>
 				<h2 class="page-header">Paying Customer</h2>
+				<gchart data='customers.data' json="true" chart="{{customers.chartType}}" width="{{customers.width}}" height="{{customers.height}}"></gchart>
 			</section>
 		</div>
 			
