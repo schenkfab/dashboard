@@ -1,6 +1,7 @@
 angular.module('myApp').directive('gchart', function() {
 	return {
 		restrict: 'EA',
+		replace: true,
 		scope: {
 			width: '@width',
 			height: '@height',
@@ -23,7 +24,6 @@ angular.module('myApp').directive('gchart', function() {
 				} else {
 					var data = google.visualization.arrayToDataTable($scope.data);
 				}
-				
 
 				var options = {};
 
@@ -31,33 +31,45 @@ angular.module('myApp').directive('gchart', function() {
 
 				if($scope.chart == 'GeoMap') {
 					options = {
-						'width': $scope.width,
-						'height': $scope.height,
 						'dataMode': 'regions'
 					};
 					geomap = new google.visualization.GeoMap($elm[0]);
 				} else if($scope.chart == 'Table') {
 					options = {
-						'width': $scope.width,
-						'height': $scope.height
 					};
 					geomap = new google.visualization.Table($elm[0]);
 				} else if($scope.chart == 'BarChart') {
 					options = {
-						'width': $scope.width,
-						'height': $scope.height
+						'width': '100%',
+						'chartArea': {
+							left: '10%',
+							top: '10%',
+							height: '70%',
+							width: '90%'
+						}
 					};
 					geomap = new google.visualization.BarChart($elm[0]);
 				} else if($scope.chart == 'LineChart') {
 					options = {
-						'width': $scope.width,
 						'curveType': 'function',
-						'height': $scope.height
+						'width': '100%',
+						'chartArea': {
+							left: '10%',
+							top: '10%',
+							height: '70%',
+							width: '90%'
+						}
 					};
 					geomap = new google.visualization.LineChart($elm[0]);
 				} else {
 					options = {
-						'width': $scope.width
+						'width': '100%',
+						'chartArea': {
+							left: '10%',
+							top: '10%',
+							height: '70%',
+							width: '90%'
+						}
 					};
 					geomap = new google.visualization.PieChart($elm[0]);
 				}

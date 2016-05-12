@@ -1,5 +1,12 @@
-angular.module('myApp').controller('mainCtrl', function(pageService, $scope) {
+angular.module('myApp').controller('mainCtrl', function(pageService, $scope, $interval) {
 	pageService.setCurrentPage('employee');
+
+	$scope.random = 0;
+
+
+	$interval(function() {
+		$scope.random = Math.random();
+	}.bind(this), 500);
 
 	$scope.getPage = function() {
 		return pageService.getCurrentPage();
@@ -28,8 +35,6 @@ angular.module('myApp').controller('customerCtrl', function(pageService, $scope,
 			console.log('data refreshed');
 		});
 	}.bind(this), 10000); 
-
-
 });
 
 angular.module('myApp').controller('employeeCtrl', function($scope, pageService) {

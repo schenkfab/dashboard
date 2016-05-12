@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=2">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Dashboard</title>
 		<!-- bower:css -->
 		<!-- endbower -->
@@ -36,11 +36,12 @@
 							<div class="col-md-4">
 								<p ng-click='employee.chartType = "GeoMap"'>Show Map</p>
 							</div>
-							<div class="col-md-4">
+							<!--<div class="col-md-4">
 								<p ng-click='employee.chartType = "PieChart"'>Show Pie</p>
-							</div>
+							</div>-->
 						</div>
-						<gchart data='employee.data' chart="{{employee.chartType}}" width="{{employee.width}}" height="{{employee.height}}"></gchart>
+						<div style='min-height:500px;height: 75%;width: 75%;margin:auto;background:#fff;text-align:center
+' gchart data='employee.data' chart="{{employee.chartType}}"></gchart>
 					</div>
 				</div>
 			</section>
@@ -65,13 +66,15 @@
 					</div>
 				</div>
 				<br><br><br><br>
-				<gchart data='issue.data' chart="{{issue.chartType}}" width="{{issue.width}}" height="{{issue.height}}"></gchart><br><br><br>
+				<div width={{random}} style='height: 40%' gchart data='issue.data' chart="{{issue.chartType}}"></div><br><br><br>
 				<h3 class="page-header">Chart per Month</h3>
-				<gchart data='issueLine.data' chart="{{issueLine.chartType}}" width="{{issueLine.width}}" height="{{issueLine.height}}"></gchart>
+				<div width={{random}} style='min-height:500px;height: 100%;width: 100%;margin:auto;background:#fff;text-align:center
+' gchart data='issueLine.data' chart="{{issueLine.chartType}}"></div>
 			</section>
 			<section ng-controller='customerCtrl' ng-show='visible()'>
 				<h2 class="page-header">Paying Customer</h2>
-				<gchart data='customers.data' json="true" width="800" chart="{{customers.chartType}}"></gchart>
+					<div width={{random}} gchart style='min-height:500px;height: 75%;width: 75%;margin:auto;background:#fff;text-align:center
+' data='customers.data' json="true" chart="{{customers.chartType}}"></div>		
 			</section>
 		</div>
 			
