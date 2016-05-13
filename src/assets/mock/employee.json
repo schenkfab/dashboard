@@ -1,0 +1,21 @@
+{
+  "cols": [{"id": "A", "label": "Country", "type": "string"},
+         {"id": "B", "label": "Count", "type": "number"}
+  ],
+  "rows": [{"c":[{"v": "Germany"},
+             {"v": 486}
+        ]},
+         {"c":[{"v": "United States"},
+             {"v": 2134}
+        ]},
+         {"c":[{"v": "Brazil"},
+             {"v": 84}
+        ]},
+         {"c":[{"v": "Canada"},
+             {"v": 124}
+        ]},
+         {"c":[{"v": "France"},
+             {"v": 15}
+        ]}
+  ]
+}

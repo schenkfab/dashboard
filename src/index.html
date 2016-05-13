@@ -41,7 +41,7 @@
 							</div>-->
 						</div>
 						<div style='min-height:500px;height: 75%;width: 75%;margin:auto;background:#fff;text-align:center
-' gchart data='employee.data' chart="{{employee.chartType}}"></gchart>
+' gchart data='employee.data' json='true' chart="{{employee.chartType}}"></gchart>
 					</div>
 				</div>
 			</section>
@@ -51,6 +51,7 @@
 						<h3 class="page-header">Chart per Month</h3>
 						<div width={{random}} class='chart'
 							gchart 
+							json='true' 
 							data='issueLine.data' 
 							chart="{{issueLine.chartType}}">
 						</div>

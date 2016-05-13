@@ -17,7 +17,7 @@ angular.module('myApp').controller('mainCtrl', function(pageService, $scope, $in
 	};
 });
 
-angular.module('myApp').controller('customerCtrl', function(pageService, $scope, $http, $interval) {
+angular.module('myApp').controller('customerCtrl', function(pageService, $scope, $http) {
 	$scope.visible = function() {
 		return pageService.getCurrentPage() == 'metrics';
 	};
@@ -37,19 +37,16 @@ angular.module('myApp').controller('customerCtrl', function(pageService, $scope,
 	}.bind(this), 1000); */
 });
 
-angular.module('myApp').controller('employeeCtrl', function($scope, pageService) {
+angular.module('myApp').controller('employeeCtrl', function($scope, pageService, $http) {
 
 	$scope.visible = function() {
 		return pageService.getCurrentPage() == 'employee';
 	};
 
 	$scope.employee = {};
-	$scope.employee.data = [['Country', 'Nr. of empoyees'],
-					['Germany', 486],
-					['United States', 2134],
-					['Brazil', 84],
-					['Canada', 124],
-					['France', 15]];
+	$http.get('/assets/mock/employee.json').success(function(data) {
+		$scope.employee.data = data;
+	});
 	$scope.employee.chartType = 'GeoMap';
 });
 
@@ -151,12 +148,10 @@ angular.module('myApp').controller('issueCtrl', function($scope, $http, pageServ
 	$scope.issueLine = {};
 	$scope.issueLine.data = [];
 	$scope.issueLine.chartType = 'BarChart';
-	$scope.issueLine.data = [['Month', 'Open Issues'],
-					['01', 486],
-					['02', 634],
-					['03', 184],
-					['04', 124],
-					['05', 150]];
+
+	$http.get('/assets/mock/issues.json').success(function(data) {
+		$scope.issueLine.data = data;
+	});
 
 	// Open Issue
 	$http.get('/assets/mock/openissues.json').success(function(data) {
