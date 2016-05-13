@@ -42,10 +42,10 @@ angular.module('myApp').directive('gchart', function() {
 					options = {
 						'width': '100%',
 						'chartArea': {
-							left: '10%',
+							left: '20%',
 							top: '10%',
 							height: '70%',
-							width: '90%'
+							width: '80%'
 						}
 					};
 					geomap = new google.visualization.BarChart($elm[0]);

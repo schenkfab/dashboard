@@ -151,11 +151,17 @@ angular.module('myApp').controller('issueCtrl', function($scope, $http, pageServ
 	$scope.issueLine = {};
 	$scope.issueLine.data = [];
 	$scope.issueLine.chartType = 'BarChart';
-	$scope.issueLine.data = [['Month', 'Open Issues', 'Closed Issues', 'Rejected Issues'],
-					['2016/01', 486, 428, 12],
-					['2016/02', 634, 502, 29],
-					['2016/03', 184, 288, 5],
-					['2016/04', 124, 180, 18],
-					['2016/05', 150, 50, 3]];
+	$scope.issueLine.data = [['Month', 'Open Issues'],
+					['2016/01', 486],
+					['2016/02', 634],
+					['2016/03', 184],
+					['2016/04', 124],
+					['2016/05', 150]];
+
+	// Open Issue
+	$http.get('/assets/mock/openissues.json').success(function(data) {
+		$scope.issueCount = {};
+		$scope.issueCount.open = data.open;
+	});
 
 });

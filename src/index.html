@@ -45,6 +45,29 @@
 					</div>
 				</div>
 			</section>
+			<div class="row">
+				<div class="col-md-6">
+					<section ng-controller='issueCtrl' ng-show='visible()'>
+						<h3 class="page-header">Open Issues: <span ng-bind='issueCount.open'></span></h3>
+						<h3 class="page-header">Chart per Month</h3>
+						<div width={{random}} 
+							style='min-height:500px;height: 50%;width: 75%;margin:auto;background:#fff;text-align:center' 
+							gchart 
+							data='issueLine.data' 
+							chart="{{issueLine.chartType}}">
+						</div>
+					</section>
+				</div>
+				<div class="col-md-6">
+					<section ng-controller='customerCtrl' ng-show='visible()'>
+						<h2 class="page-header">Paying Customer</h2>
+							<div width={{random}} gchart style='min-height:500px;height: 50%;width: 75%;margin:auto;background:#fff;text-align:center
+		' data='customers.data' json="true" chart="{{customers.chartType}}"></div>		
+					</section>
+				</div>
+			</div>
+
+
 			<section ng-controller='dataCtrl' ng-show='visible()'>
 				<h2 class="page-header">Open Issues</h2>
 				<h3 class="page-header">Detail Data</h3>
@@ -68,16 +91,8 @@
 				<br><br><br><br>
 				<div width={{random}} style='height: 40%' gchart data='issue.data' chart="{{issue.chartType}}"></div>
 			</section>
-			<section ng-controller='issueCtrl' ng-show='visible()'>
-				<h3 class="page-header">Chart per Month</h3>
-				<div width={{random}} style='min-height:500px;height: 100%;width: 100%;margin:auto;background:#fff;text-align:center
-' gchart data='issueLine.data' chart="{{issueLine.chartType}}"></div>
-			</section>
-			<section ng-controller='customerCtrl' ng-show='visible()'>
-				<h2 class="page-header">Paying Customer</h2>
-					<div width={{random}} gchart style='min-height:500px;height: 75%;width: 75%;margin:auto;background:#fff;text-align:center
-' data='customers.data' json="true" chart="{{customers.chartType}}"></div>		
-			</section>
+			
+			
 		</div>
 			
 			
