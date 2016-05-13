@@ -4,9 +4,9 @@ angular.module('myApp').controller('mainCtrl', function(pageService, $scope, $in
 	$scope.random = 0;
 
 
-	$interval(function() {
+	/*$interval(function() {
 		$scope.random = Math.random();
-	}.bind(this), 500);
+	}.bind(this), 500);*/
 
 	$scope.getPage = function() {
 		return pageService.getCurrentPage();
@@ -19,7 +19,7 @@ angular.module('myApp').controller('mainCtrl', function(pageService, $scope, $in
 
 angular.module('myApp').controller('customerCtrl', function(pageService, $scope, $http, $interval) {
 	$scope.visible = function() {
-		return pageService.getCurrentPage() == 'customer';
+		return pageService.getCurrentPage() == 'metrics';
 	};
 
 	// a line chart reflecting number of paying customers over a period of time
@@ -53,28 +53,14 @@ angular.module('myApp').controller('employeeCtrl', function($scope, pageService)
 	$scope.employee.chartType = 'GeoMap';
 });
 
-angular.module('myApp').controller('issueCtrl', function($scope, $http, pageService) {
-
+angular.module('myApp').controller('dataCtrl', function($scope, pageService, $http) {
 	$scope.visible = function() {
-		return pageService.getCurrentPage() == 'issue';
+		return pageService.getCurrentPage() == 'data';
 	};
-
 	$scope.issue = {};
 	$scope.issue.data = [];
 	
 	$scope.issue.chartType = 'Table';
-
-	$scope.issueLine = {};
-	$scope.issueLine.data = [];
-	
-	$scope.issueLine.chartType = 'BarChart';
-
-	$scope.issueLine.data = [['Month', 'Open Issues', 'Closed Issues', 'Rejected Issues'],
-					['2016/01', 486, 428, 12],
-					['2016/02', 634, 502, 29],
-					['2016/03', 184, 288, 5],
-					['2016/04', 124, 180, 18],
-					['2016/05', 150, 50, 3]];
 
 	function getData(cb) {
 		$http.get('/assets/mock/issues.csv').success(function(allText) {
@@ -155,5 +141,21 @@ angular.module('myApp').controller('issueCtrl', function($scope, $http, pageServ
 	getData(function(data) {
 		$scope.issue.data = data;
 	});
+});
+
+angular.module('myApp').controller('issueCtrl', function($scope, $http, pageService) {
 	
+	$scope.visible = function() {
+		return pageService.getCurrentPage() == 'metrics';
+	};
+	$scope.issueLine = {};
+	$scope.issueLine.data = [];
+	$scope.issueLine.chartType = 'BarChart';
+	$scope.issueLine.data = [['Month', 'Open Issues', 'Closed Issues', 'Rejected Issues'],
+					['2016/01', 486, 428, 12],
+					['2016/02', 634, 502, 29],
+					['2016/03', 184, 288, 5],
+					['2016/04', 124, 180, 18],
+					['2016/05', 150, 50, 3]];
+
 });

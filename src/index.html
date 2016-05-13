@@ -20,8 +20,8 @@
 			<h4>Reports</h4>
 			<ul class="nav nav-sidebar">
 				<li ng-click='setPage("employee")' ng-class="{active: getPage() == 'employee'}"><a href="#">Employees</a></li>
-				<li ng-click='setPage("issue")' ng-class="{active: getPage() == 'issue'}"><a href="#">Issues</a></li>
-				<li ng-click='setPage("customer")' ng-class="{active: getPage() == 'customer'}"><a href="#">Customers</a></li>
+				<li ng-click='setPage("metrics")' ng-class="{active: getPage() == 'metrics'}"><a href="#">Key metrics</a></li>
+				<li ng-click='setPage("data")' ng-class="{active: getPage() == 'data'}"><a href="#">Data view</a></li>
 			</ul>
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -45,7 +45,7 @@
 					</div>
 				</div>
 			</section>
-			<section ng-controller='issueCtrl' ng-show='visible()'>
+			<section ng-controller='dataCtrl' ng-show='visible()'>
 				<h2 class="page-header">Open Issues</h2>
 				<h3 class="page-header">Detail Data</h3>
 				<span class="btn btn-success" ng-click="showFilters = !showFilters;">Toggle Filters</span>
@@ -66,7 +66,9 @@
 					</div>
 				</div>
 				<br><br><br><br>
-				<div width={{random}} style='height: 40%' gchart data='issue.data' chart="{{issue.chartType}}"></div><br><br><br>
+				<div width={{random}} style='height: 40%' gchart data='issue.data' chart="{{issue.chartType}}"></div>
+			</section>
+			<section ng-controller='issueCtrl' ng-show='visible()'>
 				<h3 class="page-header">Chart per Month</h3>
 				<div width={{random}} style='min-height:500px;height: 100%;width: 100%;margin:auto;background:#fff;text-align:center
 ' gchart data='issueLine.data' chart="{{issueLine.chartType}}"></div>
