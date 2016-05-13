@@ -1,8 +1,25 @@
+div.chart {
+    height: 150px;
+    width: 250px;
+    margin:auto;
+    text-align:center
+  }
+
+@media (min-width: 768px) {
+  div.chart {
+    height: 200px;
+    width: 350px;
+    margin:auto;
+    text-align:center
+  }
+}
+
 div.kpi {
   font-size: 16px;
   border: 1pt solid black;
   width: 250px;
 }
+
 
 /*
  * Base structure

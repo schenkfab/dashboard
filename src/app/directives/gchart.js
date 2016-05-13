@@ -33,7 +33,7 @@ angular.module('myApp').directive('gchart', function() {
 					options = {
 						'dataMode': 'regions'
 					};
-					geomap = new google.visualization.GeoMap($elm[0]);
+					geomap = new google.visualization.GeoChart($elm[0]);
 				} else if($scope.chart == 'Table') {
 					options = {
 					};
@@ -52,12 +52,11 @@ angular.module('myApp').directive('gchart', function() {
 				} else if($scope.chart == 'LineChart') {
 					options = {
 						'curveType': 'function',
-						'width': '100%',
 						'chartArea': {
-							left: '10%',
-							top: '10%',
+							left: '0%',
+							top: '0%',
 							height: '70%',
-							width: '90%'
+							width: '60%'
 						}
 					};
 					geomap = new google.visualization.LineChart($elm[0]);
@@ -73,7 +72,7 @@ angular.module('myApp').directive('gchart', function() {
 					};
 					geomap = new google.visualization.PieChart($elm[0]);
 				}
-				geomap.draw(data, options);		
+					geomap.draw(data, options);
 			}
 
 			$scope.$watch('data', function () {

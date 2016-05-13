@@ -24,17 +24,17 @@ angular.module('myApp').controller('customerCtrl', function(pageService, $scope,
 
 	// a line chart reflecting number of paying customers over a period of time
 	$scope.customers = {};
+	$scope.customers.chartType = 'LineChart';
 	$http.get('/assets/mock/customers.json').success(function(json) {
 		$scope.customers.data = json;
-		$scope.customers.chartType = 'LineChart';
 	});
 
-	$interval(function(){
+	/*$interval(function(){
 		$http.get('/assets/mock/customers.json').success(function(json) {
 			$scope.customers.data = json;
 			console.log('data refreshed');
 		});
-	}.bind(this), 10000); 
+	}.bind(this), 1000); */
 });
 
 angular.module('myApp').controller('employeeCtrl', function($scope, pageService) {
@@ -152,11 +152,11 @@ angular.module('myApp').controller('issueCtrl', function($scope, $http, pageServ
 	$scope.issueLine.data = [];
 	$scope.issueLine.chartType = 'BarChart';
 	$scope.issueLine.data = [['Month', 'Open Issues'],
-					['2016/01', 486],
-					['2016/02', 634],
-					['2016/03', 184],
-					['2016/04', 124],
-					['2016/05', 150]];
+					['01', 486],
+					['02', 634],
+					['03', 184],
+					['04', 124],
+					['05', 150]];
 
 	// Open Issue
 	$http.get('/assets/mock/openissues.json').success(function(data) {
