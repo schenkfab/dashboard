@@ -78,9 +78,9 @@ gulp.task('serve:dev', ['inject:dev'], function() {
 
 <!-- PRODUCTION -->
 
-gulp.task('inject:prod', ['css:prod', 'fonts:prod', 'assets:prod', 'sass:prod', 'vendorJs:prod', 'js:prod', 'directives:prod'], function () {
+gulp.task('inject:prod', ['fonts:prod', 'assets:prod', 'sass:prod', 'vendorJs:prod', 'js:prod', 'directives:prod'], function () {
 	var target = gulp.src(['./src/index.html']);
-	var sourceVendorJs = gulp.src(['./dist/**/jquery.js', './dist/**/angular.js', './dist/**/angular-ui.js', './dist/**/focusIf.js', './dist/**/ui-bootstrap-tpls.js', './dist/sw.js'], {read: false});
+	var sourceVendorJs = gulp.src(['./dist/**/vendor.js', './dist/**/jquery.js', './dist/**/angular.js', './dist/**/angular-ui.js', './dist/**/focusIf.js', './dist/**/ui-bootstrap-tpls.js', './dist/sw.js'], {read: false});
 	var sourcesAllJs = gulp.src(['./dist/**/all.js'], {read: false});
 	var vendorSources = gulp.src(['./dist/**/vendors.css', './dist/css/*.*'], {read: false});
 
@@ -113,7 +113,7 @@ gulp.task('fonts:prod', ['bootstrap-font:prod'], function () {
 });
 
 gulp.task('css:prod', function () {
-	return gulp.src('./bower_components/font-awesome/css/*.*')
+	return gulp.src('./bower_components/font-awesome/css/*.min.css')
 		.pipe(gulp.dest('./dist/css'));
 });
 
@@ -123,8 +123,9 @@ gulp.task('directives:prod', function() {
 });
 
 gulp.task('sass:prod', function() {
-	return gulp.src('./src/app/**/*.scss')
+	return gulp.src(['./src/app/**/vendors.scss', './src/app/**/style.scss'])
 		.pipe(sass().on('error', sass.logError))
+		.pipe(concat('all.css'))
 		.pipe(gulp.dest('./dist/css'));
 });
 
@@ -141,6 +142,7 @@ gulp.task('vendorJs:prod', function() {
 	, './bower_components/ng-focus-if/focusIf.js', './bower_components/angular-ui/build/angular-ui.js'
 	, './bower_components/angular-bootstrap/ui-bootstrap-tpls.js'])
 		.pipe(uglify({mangle: false}))
+		.pipe(concat('vendor.js'))
 		.pipe(gulp.dest('./dist/js'));
 });
 
